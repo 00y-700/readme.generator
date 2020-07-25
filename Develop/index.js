@@ -2,7 +2,13 @@ const fs = require("fs");
 const inquirer = require("inquirer");
 
 // array of questions for user
-const questions = inquirer.prompt([
+const question1 = {
+    type: "input",
+    message: "What is your Title?",
+    name: "Title"
+}
+
+inquirer.prompt([
     {
         type: "input",
         message: "What is your Title?",
@@ -11,17 +17,17 @@ const questions = inquirer.prompt([
     {
         type: "input",
         message: "User Story AS A statement:",
-        name: "AS A"
+        name: "as"
     },
     {
         type: "input",
         message: "User Story I WANT statement:",
-        name: "I WANT"
+        name: "want"
     },
     {
         type: "input",
         message: "User Story SO THAT statement:",
-        name: "SO THAT"
+        name: "that"
     },
     {
         type: "input",
@@ -38,25 +44,47 @@ const questions = inquirer.prompt([
         message: "Who are your contributors?",
         name: "contributors"
     }
-]).then(function(data) {
-    var filename = "README.md";
-// function to write README file
-
-  fs.writeFile(filename, JSON.stringify(data, null, '\t'), function(err) {
-
-    if (err) {
-      return console.log(err);
-    }
-
-    console.log("Success!");
-
-  });
+]).then((response)=>{
+    fs.appendFileSync("README.md", "# " + response.title + '\n' + '\n', function(err) {
+        if(err) {
+            console.log(err);
+        }
+        console.log("TITLE done");
+    });
+    fs.appendFileSync("README.md", "## " + "User Story:" + '\n' + "* " + "AS A " + response.as + '\n', function(err) {
+        if(err) {
+            console.log(err);
+        }
+        console.log("AS A done");
+    });
+    fs.appendFileSync("README.md", "* " + "I WANT " + response.want + '\n', function(err) {
+        if(err) {
+            console.log(err);
+        }
+        console.log("I WANT done");
+    });
+    fs.appendFileSync("README.md", "* " + "SO THAT " + response.that + '\n' + '\n', function(err) {
+        if(err) {
+            console.log(err);
+        }
+        console.log("SO THAT done");
+    });
+    fs.appendFileSync("README.md", "## " + "Installation Instructions:" + '\n' + "* " + response.instructions + '\n' + '\n', function(err) {
+        if(err) {
+            console.log(err);
+        }
+        console.log("INST done");
+    });
+    fs.appendFileSync("README.md", "## " + "Project Description:" + '\n' + "* " + response.description + '\n' + '\n', function(err) {
+        if(err) {
+            console.log(err);
+        }
+        console.log("DESC done");
+    });
+    fs.appendFileSync("README.md", "## " + "Contributors:" + '\n' + "* " + response.contributors + '\n' + '\n', function(err) {
+        if(err) {
+            console.log(err);
+        }
+        console.log("CONT done");
+    });
 });
-
-// function to initialize program
-function init() {
-
-}
-
-// function call to initialize program
-init();
