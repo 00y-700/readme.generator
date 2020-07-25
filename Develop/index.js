@@ -60,7 +60,7 @@ inquirer.prompt([
         }
         console.log("TITLE done");
     });
-    fs.appendFileSync("README.md", "## " + '<a name="user"></a>' + "User Story:" + '\n' + "* " + "AS A " + response.as + '\n', function(err) {
+    fs.appendFileSync("README.md", "## " + "User Story:" + '\n' + "* " + "AS A " + response.as + '\n', function(err) {
         if(err) {
             console.log(err);
         }
