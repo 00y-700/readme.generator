@@ -32,5 +32,5 @@
 ## Questions:
 * None
 
-## Link to Video
-index.html
+## Video Link:
+https://00y-700.github.io/readme.generator/
